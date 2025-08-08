@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/robust_video.dir/apps/robust_video/main.cpp.o -o robust_video  libhydra_network.a -lSDL2 -lavcodec -lavformat -lavutil -lswscale

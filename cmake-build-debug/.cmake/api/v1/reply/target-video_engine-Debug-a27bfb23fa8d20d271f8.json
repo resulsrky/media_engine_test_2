@@ -61,7 +61,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-O3 -DNDEBUG -std=c++20 -fdiagnostics-color=always"
+					"fragment" : "-g -std=c++20 -fdiagnostics-color=always"
 				},
 				{
 					"backtrace" : 5,
@@ -103,7 +103,7 @@
 				},
 				{
 					"backtrace" : 2,
-					"path" : "/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-release/_deps/asio-src/asio/include"
+					"path" : "/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/_deps/asio-src/asio/include"
 				},
 				{
 					"backtrace" : 2,
@@ -130,11 +130,11 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "hydra_media_ffmpeg::@6890427a1f51a3e7e1df"
+			"id" : "hydra_network::@6890427a1f51a3e7e1df"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "hydra_network::@6890427a1f51a3e7e1df"
+			"id" : "hydra_media_ffmpeg::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "video_engine::@6890427a1f51a3e7e1df",
@@ -143,7 +143,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-O3 -DNDEBUG",
+				"fragment" : "-g",
 				"role" : "flags"
 			},
 			{

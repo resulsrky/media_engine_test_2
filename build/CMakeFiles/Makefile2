@@ -76,6 +76,7 @@ all: CMakeFiles/video_engine.dir/all
 all: CMakeFiles/realtime_video.dir/all
 all: CMakeFiles/zero_latency.dir/all
 all: CMakeFiles/high_quality_video.dir/all
+all: CMakeFiles/robust_video.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -96,6 +97,7 @@ clean: CMakeFiles/video_engine.dir/clean
 clean: CMakeFiles/realtime_video.dir/clean
 clean: CMakeFiles/zero_latency.dir/clean
 clean: CMakeFiles/high_quality_video.dir/clean
+clean: CMakeFiles/robust_video.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -131,7 +133,7 @@ CMakeFiles/hydra_network.dir/clean:
 CMakeFiles/sender_app.dir/all: CMakeFiles/hydra_network.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_app.dir/build.make CMakeFiles/sender_app.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_app.dir/build.make CMakeFiles/sender_app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/build/CMakeFiles --progress-num=23,24 "Built target sender_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/build/CMakeFiles --progress-num=25,26 "Built target sender_app"
 .PHONY : CMakeFiles/sender_app.dir/all
 
 # Build rule for subdir invocation for target.
@@ -183,7 +185,7 @@ CMakeFiles/receiver_app.dir/clean:
 CMakeFiles/sender_video_app.dir/all: CMakeFiles/hydra_network.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_video_app.dir/build.make CMakeFiles/sender_video_app.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_video_app.dir/build.make CMakeFiles/sender_video_app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/build/CMakeFiles --progress-num=27,28 "Built target sender_video_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/build/CMakeFiles --progress-num=29,30 "Built target sender_video_app"
 .PHONY : CMakeFiles/sender_video_app.dir/all
 
 # Build rule for subdir invocation for target.
@@ -262,7 +264,7 @@ CMakeFiles/sender_ffmpeg_app.dir/all: CMakeFiles/hydra_network.dir/all
 CMakeFiles/sender_ffmpeg_app.dir/all: CMakeFiles/hydra_media_ffmpeg.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_ffmpeg_app.dir/build.make CMakeFiles/sender_ffmpeg_app.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_ffmpeg_app.dir/build.make CMakeFiles/sender_ffmpeg_app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/build/CMakeFiles --progress-num=25,26 "Built target sender_ffmpeg_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/build/CMakeFiles --progress-num=27,28 "Built target sender_ffmpeg_app"
 .PHONY : CMakeFiles/sender_ffmpeg_app.dir/all
 
 # Build rule for subdir invocation for target.
@@ -343,7 +345,7 @@ CMakeFiles/video_engine.dir/all: CMakeFiles/hydra_network.dir/all
 CMakeFiles/video_engine.dir/all: CMakeFiles/hydra_media_ffmpeg.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/video_engine.dir/build.make CMakeFiles/video_engine.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/video_engine.dir/build.make CMakeFiles/video_engine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/build/CMakeFiles --progress-num=29,30 "Built target video_engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/build/CMakeFiles --progress-num=31,32 "Built target video_engine"
 .PHONY : CMakeFiles/video_engine.dir/all
 
 # Build rule for subdir invocation for target.
@@ -395,7 +397,7 @@ CMakeFiles/realtime_video.dir/clean:
 CMakeFiles/zero_latency.dir/all: CMakeFiles/hydra_network.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/zero_latency.dir/build.make CMakeFiles/zero_latency.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/zero_latency.dir/build.make CMakeFiles/zero_latency.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/build/CMakeFiles --progress-num=31,32 "Built target zero_latency"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/build/CMakeFiles --progress-num=33,34 "Built target zero_latency"
 .PHONY : CMakeFiles/zero_latency.dir/all
 
 # Build rule for subdir invocation for target.
@@ -439,6 +441,32 @@ high_quality_video: CMakeFiles/high_quality_video.dir/rule
 CMakeFiles/high_quality_video.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/high_quality_video.dir/build.make CMakeFiles/high_quality_video.dir/clean
 .PHONY : CMakeFiles/high_quality_video.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/robust_video.dir
+
+# All Build rule for target.
+CMakeFiles/robust_video.dir/all: CMakeFiles/hydra_network.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/robust_video.dir/build.make CMakeFiles/robust_video.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/robust_video.dir/build.make CMakeFiles/robust_video.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/build/CMakeFiles --progress-num=23,24 "Built target robust_video"
+.PHONY : CMakeFiles/robust_video.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/robust_video.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/raul_cto/Documents/GitHub/media_engine_test/build/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/robust_video.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/raul_cto/Documents/GitHub/media_engine_test/build/CMakeFiles 0
+.PHONY : CMakeFiles/robust_video.dir/rule
+
+# Convenience name for target.
+robust_video: CMakeFiles/robust_video.dir/rule
+.PHONY : robust_video
+
+# clean rule for target.
+CMakeFiles/robust_video.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/robust_video.dir/build.make CMakeFiles/robust_video.dir/clean
+.PHONY : CMakeFiles/robust_video.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -18,6 +18,7 @@
       <config projectName="Hydra" targetName="receiver_video_app" />
       <config projectName="Hydra" targetName="hydra_media_ffmpeg" />
       <config projectName="Hydra" targetName="receiver_ffmpeg_app" />
+      <config projectName="Hydra" targetName="robust_video" />
       <config projectName="Hydra" targetName="high_quality_video" />
       <config projectName="Hydra" targetName="realtime_video" />
       <config projectName="Hydra" targetName="receiver_app" />
@@ -139,6 +140,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="robust_video" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Hydra" TARGET_NAME="robust_video" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="Hydra" RUN_TARGET_NAME="robust_video">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="sender_app" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Hydra" TARGET_NAME="sender_app" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="Hydra" RUN_TARGET_NAME="sender_app">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -173,6 +179,7 @@
       <item itemvalue="CMake Application.receiver_app" />
       <item itemvalue="CMake Application.receiver_ffmpeg_app" />
       <item itemvalue="CMake Application.receiver_video_app" />
+      <item itemvalue="CMake Application.robust_video" />
       <item itemvalue="CMake Application.sender_app" />
       <item itemvalue="CMake Application.sender_ffmpeg_app" />
       <item itemvalue="CMake Application.sender_video_app" />
@@ -187,7 +194,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1754589887398</updated>
-      <workItem from="1754589888456" duration="9848000" />
+      <workItem from="1754589888456" duration="10384000" />
     </task>
     <servers />
   </component>

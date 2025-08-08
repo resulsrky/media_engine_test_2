@@ -73,4 +73,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/realtime_video.dir/DependInfo.cmake"
   "CMakeFiles/zero_latency.dir/DependInfo.cmake"
   "CMakeFiles/high_quality_video.dir/DependInfo.cmake"
+  "CMakeFiles/robust_video.dir/DependInfo.cmake"
   )

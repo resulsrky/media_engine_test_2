@@ -285,6 +285,19 @@ high_quality_video/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/high_quality_video.dir/build.make CMakeFiles/high_quality_video.dir/build
 .PHONY : high_quality_video/fast
 
+#=============================================================================
+# Target rules for targets named robust_video
+
+# Build rule for target.
+robust_video: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 robust_video
+.PHONY : robust_video
+
+# fast build rule for target.
+robust_video/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/robust_video.dir/build.make CMakeFiles/robust_video.dir/build
+.PHONY : robust_video/fast
+
 apps/duplex_ffmpeg/main.o: apps/duplex_ffmpeg/main.cpp.o
 .PHONY : apps/duplex_ffmpeg/main.o
 
@@ -428,6 +441,30 @@ apps/receiver_video/main.s: apps/receiver_video/main.cpp.s
 apps/receiver_video/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/receiver_video_app.dir/build.make CMakeFiles/receiver_video_app.dir/apps/receiver_video/main.cpp.s
 .PHONY : apps/receiver_video/main.cpp.s
+
+apps/robust_video/main.o: apps/robust_video/main.cpp.o
+.PHONY : apps/robust_video/main.o
+
+# target to build an object file
+apps/robust_video/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/robust_video.dir/build.make CMakeFiles/robust_video.dir/apps/robust_video/main.cpp.o
+.PHONY : apps/robust_video/main.cpp.o
+
+apps/robust_video/main.i: apps/robust_video/main.cpp.i
+.PHONY : apps/robust_video/main.i
+
+# target to preprocess a source file
+apps/robust_video/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/robust_video.dir/build.make CMakeFiles/robust_video.dir/apps/robust_video/main.cpp.i
+.PHONY : apps/robust_video/main.cpp.i
+
+apps/robust_video/main.s: apps/robust_video/main.cpp.s
+.PHONY : apps/robust_video/main.s
+
+# target to generate assembly for a file
+apps/robust_video/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/robust_video.dir/build.make CMakeFiles/robust_video.dir/apps/robust_video/main.cpp.s
+.PHONY : apps/robust_video/main.cpp.s
 
 apps/sender/main.o: apps/sender/main.cpp.o
 .PHONY : apps/sender/main.o
@@ -757,6 +794,7 @@ help:
 	@echo "... receiver_app"
 	@echo "... receiver_ffmpeg_app"
 	@echo "... receiver_video_app"
+	@echo "... robust_video"
 	@echo "... sender_app"
 	@echo "... sender_ffmpeg_app"
 	@echo "... sender_video_app"
@@ -780,6 +818,9 @@ help:
 	@echo "... apps/receiver_video/main.o"
 	@echo "... apps/receiver_video/main.i"
 	@echo "... apps/receiver_video/main.s"
+	@echo "... apps/robust_video/main.o"
+	@echo "... apps/robust_video/main.i"
+	@echo "... apps/robust_video/main.s"
 	@echo "... apps/sender/main.o"
 	@echo "... apps/sender/main.i"
 	@echo "... apps/sender/main.s"
