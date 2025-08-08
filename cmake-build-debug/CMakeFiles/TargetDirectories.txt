@@ -1,0 +1,15 @@
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/hydra_network.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/sender_app.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/receiver_app.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/sender_video_app.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/receiver_video_app.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/hydra_media_ffmpeg.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/sender_ffmpeg_app.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/receiver_ffmpeg_app.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/duplex_ffmpeg_app.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/video_engine.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/realtime_video.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/zero_latency.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/high_quality_video.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/rebuild_cache.dir

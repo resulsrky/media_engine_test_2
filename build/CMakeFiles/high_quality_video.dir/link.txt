@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/high_quality_video.dir/apps/high_quality_video/main.cpp.o -o high_quality_video  libhydra_network.a -lSDL2 -lavcodec -lavformat -lavutil -lswscale 

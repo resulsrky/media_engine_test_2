@@ -1,0 +1,2 @@
+/usr/bin/ar qc libhydra_network.a CMakeFiles/hydra_network.dir/src/network/NetworkSender.cpp.o CMakeFiles/hydra_network.dir/src/network/NetworkReceiver.cpp.o CMakeFiles/hydra_network.dir/src/network/Packetizer.cpp.o
+/usr/bin/ranlib libhydra_network.a

@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/sender_app.dir/apps/sender/main.cpp.o -o sender_app  libhydra_network.a 

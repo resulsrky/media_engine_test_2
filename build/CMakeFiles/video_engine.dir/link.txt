@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/video_engine.dir/apps/video_engine/main.cpp.o -o video_engine  libhydra_network.a libhydra_media_ffmpeg.a -lavcodec -lavutil -lavformat -lswscale -lavdevice -lSDL2 

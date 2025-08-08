@@ -1,0 +1,2 @@
+/usr/bin/ar qc libhydra_media_ffmpeg.a CMakeFiles/hydra_media_ffmpeg.dir/src/media/FFmpegCpuPipeline.cpp.o CMakeFiles/hydra_media_ffmpeg.dir/src/media/FFmpegDecoder.cpp.o CMakeFiles/hydra_media_ffmpeg.dir/src/media/SdlRenderer.cpp.o CMakeFiles/hydra_media_ffmpeg.dir/src/media/V4L2Enumerator.cpp.o CMakeFiles/hydra_media_ffmpeg.dir/src/media/FFmpegCameraEncodingPipeline.cpp.o
+/usr/bin/ranlib libhydra_media_ffmpeg.a

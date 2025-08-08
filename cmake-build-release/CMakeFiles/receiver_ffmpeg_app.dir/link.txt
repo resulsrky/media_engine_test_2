@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/receiver_ffmpeg_app.dir/apps/receiver_ffmpeg/main.cpp.o -o receiver_ffmpeg_app  libhydra_network.a libhydra_media_ffmpeg.a -lavcodec -lavutil -lavformat -lswscale -lavdevice -lSDL2

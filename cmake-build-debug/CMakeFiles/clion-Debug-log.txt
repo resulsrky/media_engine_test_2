@@ -1,0 +1,4 @@
+/home/raul_cto/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /home/raul_cto/Documents/GitHub/media_engine_test -B /home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug

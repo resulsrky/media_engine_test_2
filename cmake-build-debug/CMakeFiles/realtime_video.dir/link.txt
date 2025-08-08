@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/realtime_video.dir/apps/realtime_video/main.cpp.o -o realtime_video  libhydra_network.a -lSDL2 -lavcodec -lavformat -lavutil -lswscale

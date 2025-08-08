@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/duplex_ffmpeg_app.dir/apps/duplex_ffmpeg/main.cpp.o -o duplex_ffmpeg_app  libhydra_network.a libhydra_media_ffmpeg.a -lavcodec -lavutil -lavformat -lswscale -lavdevice -lSDL2

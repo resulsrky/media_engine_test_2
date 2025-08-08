@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/sender_video_app.dir/apps/sender_video/main.cpp.o -o sender_video_app  libhydra_network.a

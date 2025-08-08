@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/zero_latency.dir/apps/zero_latency/main.cpp.o -o zero_latency  libhydra_network.a -lSDL2 -lavcodec -lavformat -lavutil -lswscale
