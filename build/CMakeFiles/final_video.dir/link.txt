@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/final_video.dir/apps/final_video/main.cpp.o -o final_video  libhydra_network.a -lSDL2 -lavcodec -lavformat -lavutil -lswscale 

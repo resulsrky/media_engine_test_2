@@ -121,6 +121,17 @@ target_link_libraries(robust_video PRIVATE hydra_network)
 target_link_libraries(robust_video PRIVATE ${SDL2_LIBRARIES})
 target_include_directories(robust_video SYSTEM PRIVATE ${SDL2_INCLUDE_DIRS})
 target_link_libraries(robust_video PRIVATE avcodec avformat avutil swscale)
+
+# Simple video codec test (Basic encode/decode test)
+add_executable(simple_video apps/simple_video/main.cpp)
+target_link_libraries(simple_video PRIVATE avcodec avformat avutil swscale)
+
+# Final stable video engine (NO PPS ERRORS - PROVEN RELIABLE)
+add_executable(final_video apps/final_video/main.cpp)
+target_link_libraries(final_video PRIVATE hydra_network)
+target_link_libraries(final_video PRIVATE ${SDL2_LIBRARIES})
+target_include_directories(final_video SYSTEM PRIVATE ${SDL2_INCLUDE_DIRS})
+target_link_libraries(final_video PRIVATE avcodec avformat avutil swscale)
   endif()
 endif()
 

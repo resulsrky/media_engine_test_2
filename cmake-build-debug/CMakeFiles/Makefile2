@@ -77,6 +77,8 @@ all: CMakeFiles/realtime_video.dir/all
 all: CMakeFiles/zero_latency.dir/all
 all: CMakeFiles/high_quality_video.dir/all
 all: CMakeFiles/robust_video.dir/all
+all: CMakeFiles/simple_video.dir/all
+all: CMakeFiles/final_video.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
@@ -94,6 +96,8 @@ codegen: CMakeFiles/realtime_video.dir/codegen
 codegen: CMakeFiles/zero_latency.dir/codegen
 codegen: CMakeFiles/high_quality_video.dir/codegen
 codegen: CMakeFiles/robust_video.dir/codegen
+codegen: CMakeFiles/simple_video.dir/codegen
+codegen: CMakeFiles/final_video.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -115,6 +119,8 @@ clean: CMakeFiles/realtime_video.dir/clean
 clean: CMakeFiles/zero_latency.dir/clean
 clean: CMakeFiles/high_quality_video.dir/clean
 clean: CMakeFiles/robust_video.dir/clean
+clean: CMakeFiles/simple_video.dir/clean
+clean: CMakeFiles/final_video.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -124,7 +130,7 @@ clean: CMakeFiles/robust_video.dir/clean
 CMakeFiles/hydra_network.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hydra_network.dir/build.make CMakeFiles/hydra_network.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hydra_network.dir/build.make CMakeFiles/hydra_network.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=11,12,13,14 "Built target hydra_network"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=13,14,15,16 "Built target hydra_network"
 .PHONY : CMakeFiles/hydra_network.dir/all
 
 # Build rule for subdir invocation for target.
@@ -141,7 +147,7 @@ hydra_network: CMakeFiles/hydra_network.dir/rule
 # codegen rule for target.
 CMakeFiles/hydra_network.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hydra_network.dir/build.make CMakeFiles/hydra_network.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=11,12,13,14 "Finished codegen for target hydra_network"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=13,14,15,16 "Finished codegen for target hydra_network"
 .PHONY : CMakeFiles/hydra_network.dir/codegen
 
 # clean rule for target.
@@ -156,7 +162,7 @@ CMakeFiles/hydra_network.dir/clean:
 CMakeFiles/sender_app.dir/all: CMakeFiles/hydra_network.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_app.dir/build.make CMakeFiles/sender_app.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_app.dir/build.make CMakeFiles/sender_app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=25,26 "Built target sender_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=27,28 "Built target sender_app"
 .PHONY : CMakeFiles/sender_app.dir/all
 
 # Build rule for subdir invocation for target.
@@ -173,7 +179,7 @@ sender_app: CMakeFiles/sender_app.dir/rule
 # codegen rule for target.
 CMakeFiles/sender_app.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_app.dir/build.make CMakeFiles/sender_app.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=25,26 "Finished codegen for target sender_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=27,28 "Finished codegen for target sender_app"
 .PHONY : CMakeFiles/sender_app.dir/codegen
 
 # clean rule for target.
@@ -188,7 +194,7 @@ CMakeFiles/sender_app.dir/clean:
 CMakeFiles/receiver_app.dir/all: CMakeFiles/hydra_network.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/receiver_app.dir/build.make CMakeFiles/receiver_app.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/receiver_app.dir/build.make CMakeFiles/receiver_app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=17,18 "Built target receiver_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=19,20 "Built target receiver_app"
 .PHONY : CMakeFiles/receiver_app.dir/all
 
 # Build rule for subdir invocation for target.
@@ -205,7 +211,7 @@ receiver_app: CMakeFiles/receiver_app.dir/rule
 # codegen rule for target.
 CMakeFiles/receiver_app.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/receiver_app.dir/build.make CMakeFiles/receiver_app.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=17,18 "Finished codegen for target receiver_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=19,20 "Finished codegen for target receiver_app"
 .PHONY : CMakeFiles/receiver_app.dir/codegen
 
 # clean rule for target.
@@ -220,7 +226,7 @@ CMakeFiles/receiver_app.dir/clean:
 CMakeFiles/sender_video_app.dir/all: CMakeFiles/hydra_network.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_video_app.dir/build.make CMakeFiles/sender_video_app.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_video_app.dir/build.make CMakeFiles/sender_video_app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=29,30 "Built target sender_video_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=31,32 "Built target sender_video_app"
 .PHONY : CMakeFiles/sender_video_app.dir/all
 
 # Build rule for subdir invocation for target.
@@ -237,7 +243,7 @@ sender_video_app: CMakeFiles/sender_video_app.dir/rule
 # codegen rule for target.
 CMakeFiles/sender_video_app.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_video_app.dir/build.make CMakeFiles/sender_video_app.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=29,30 "Finished codegen for target sender_video_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=31,32 "Finished codegen for target sender_video_app"
 .PHONY : CMakeFiles/sender_video_app.dir/codegen
 
 # clean rule for target.
@@ -252,7 +258,7 @@ CMakeFiles/sender_video_app.dir/clean:
 CMakeFiles/receiver_video_app.dir/all: CMakeFiles/hydra_network.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/receiver_video_app.dir/build.make CMakeFiles/receiver_video_app.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/receiver_video_app.dir/build.make CMakeFiles/receiver_video_app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=21,22 "Built target receiver_video_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=23,24 "Built target receiver_video_app"
 .PHONY : CMakeFiles/receiver_video_app.dir/all
 
 # Build rule for subdir invocation for target.
@@ -269,7 +275,7 @@ receiver_video_app: CMakeFiles/receiver_video_app.dir/rule
 # codegen rule for target.
 CMakeFiles/receiver_video_app.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/receiver_video_app.dir/build.make CMakeFiles/receiver_video_app.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=21,22 "Finished codegen for target receiver_video_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=23,24 "Finished codegen for target receiver_video_app"
 .PHONY : CMakeFiles/receiver_video_app.dir/codegen
 
 # clean rule for target.
@@ -284,7 +290,7 @@ CMakeFiles/receiver_video_app.dir/clean:
 CMakeFiles/hydra_media_ffmpeg.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hydra_media_ffmpeg.dir/build.make CMakeFiles/hydra_media_ffmpeg.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hydra_media_ffmpeg.dir/build.make CMakeFiles/hydra_media_ffmpeg.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=5,6,7,8,9,10 "Built target hydra_media_ffmpeg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=7,8,9,10,11,12 "Built target hydra_media_ffmpeg"
 .PHONY : CMakeFiles/hydra_media_ffmpeg.dir/all
 
 # Build rule for subdir invocation for target.
@@ -301,7 +307,7 @@ hydra_media_ffmpeg: CMakeFiles/hydra_media_ffmpeg.dir/rule
 # codegen rule for target.
 CMakeFiles/hydra_media_ffmpeg.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hydra_media_ffmpeg.dir/build.make CMakeFiles/hydra_media_ffmpeg.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=5,6,7,8,9,10 "Finished codegen for target hydra_media_ffmpeg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=7,8,9,10,11,12 "Finished codegen for target hydra_media_ffmpeg"
 .PHONY : CMakeFiles/hydra_media_ffmpeg.dir/codegen
 
 # clean rule for target.
@@ -317,7 +323,7 @@ CMakeFiles/sender_ffmpeg_app.dir/all: CMakeFiles/hydra_network.dir/all
 CMakeFiles/sender_ffmpeg_app.dir/all: CMakeFiles/hydra_media_ffmpeg.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_ffmpeg_app.dir/build.make CMakeFiles/sender_ffmpeg_app.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_ffmpeg_app.dir/build.make CMakeFiles/sender_ffmpeg_app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=27,28 "Built target sender_ffmpeg_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=29,30 "Built target sender_ffmpeg_app"
 .PHONY : CMakeFiles/sender_ffmpeg_app.dir/all
 
 # Build rule for subdir invocation for target.
@@ -334,7 +340,7 @@ sender_ffmpeg_app: CMakeFiles/sender_ffmpeg_app.dir/rule
 # codegen rule for target.
 CMakeFiles/sender_ffmpeg_app.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_ffmpeg_app.dir/build.make CMakeFiles/sender_ffmpeg_app.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=27,28 "Finished codegen for target sender_ffmpeg_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=29,30 "Finished codegen for target sender_ffmpeg_app"
 .PHONY : CMakeFiles/sender_ffmpeg_app.dir/codegen
 
 # clean rule for target.
@@ -350,7 +356,7 @@ CMakeFiles/receiver_ffmpeg_app.dir/all: CMakeFiles/hydra_network.dir/all
 CMakeFiles/receiver_ffmpeg_app.dir/all: CMakeFiles/hydra_media_ffmpeg.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/receiver_ffmpeg_app.dir/build.make CMakeFiles/receiver_ffmpeg_app.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/receiver_ffmpeg_app.dir/build.make CMakeFiles/receiver_ffmpeg_app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=19,20 "Built target receiver_ffmpeg_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=21,22 "Built target receiver_ffmpeg_app"
 .PHONY : CMakeFiles/receiver_ffmpeg_app.dir/all
 
 # Build rule for subdir invocation for target.
@@ -367,7 +373,7 @@ receiver_ffmpeg_app: CMakeFiles/receiver_ffmpeg_app.dir/rule
 # codegen rule for target.
 CMakeFiles/receiver_ffmpeg_app.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/receiver_ffmpeg_app.dir/build.make CMakeFiles/receiver_ffmpeg_app.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=19,20 "Finished codegen for target receiver_ffmpeg_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=21,22 "Finished codegen for target receiver_ffmpeg_app"
 .PHONY : CMakeFiles/receiver_ffmpeg_app.dir/codegen
 
 # clean rule for target.
@@ -416,7 +422,7 @@ CMakeFiles/video_engine.dir/all: CMakeFiles/hydra_network.dir/all
 CMakeFiles/video_engine.dir/all: CMakeFiles/hydra_media_ffmpeg.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/video_engine.dir/build.make CMakeFiles/video_engine.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/video_engine.dir/build.make CMakeFiles/video_engine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=31,32 "Built target video_engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=35,36 "Built target video_engine"
 .PHONY : CMakeFiles/video_engine.dir/all
 
 # Build rule for subdir invocation for target.
@@ -433,7 +439,7 @@ video_engine: CMakeFiles/video_engine.dir/rule
 # codegen rule for target.
 CMakeFiles/video_engine.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/video_engine.dir/build.make CMakeFiles/video_engine.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=31,32 "Finished codegen for target video_engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=35,36 "Finished codegen for target video_engine"
 .PHONY : CMakeFiles/video_engine.dir/codegen
 
 # clean rule for target.
@@ -448,7 +454,7 @@ CMakeFiles/video_engine.dir/clean:
 CMakeFiles/realtime_video.dir/all: CMakeFiles/hydra_network.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/realtime_video.dir/build.make CMakeFiles/realtime_video.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/realtime_video.dir/build.make CMakeFiles/realtime_video.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=15,16 "Built target realtime_video"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=17,18 "Built target realtime_video"
 .PHONY : CMakeFiles/realtime_video.dir/all
 
 # Build rule for subdir invocation for target.
@@ -465,7 +471,7 @@ realtime_video: CMakeFiles/realtime_video.dir/rule
 # codegen rule for target.
 CMakeFiles/realtime_video.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/realtime_video.dir/build.make CMakeFiles/realtime_video.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=15,16 "Finished codegen for target realtime_video"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=17,18 "Finished codegen for target realtime_video"
 .PHONY : CMakeFiles/realtime_video.dir/codegen
 
 # clean rule for target.
@@ -480,7 +486,7 @@ CMakeFiles/realtime_video.dir/clean:
 CMakeFiles/zero_latency.dir/all: CMakeFiles/hydra_network.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/zero_latency.dir/build.make CMakeFiles/zero_latency.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/zero_latency.dir/build.make CMakeFiles/zero_latency.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=33,34 "Built target zero_latency"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=37,38 "Built target zero_latency"
 .PHONY : CMakeFiles/zero_latency.dir/all
 
 # Build rule for subdir invocation for target.
@@ -497,7 +503,7 @@ zero_latency: CMakeFiles/zero_latency.dir/rule
 # codegen rule for target.
 CMakeFiles/zero_latency.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/zero_latency.dir/build.make CMakeFiles/zero_latency.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=33,34 "Finished codegen for target zero_latency"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=37,38 "Finished codegen for target zero_latency"
 .PHONY : CMakeFiles/zero_latency.dir/codegen
 
 # clean rule for target.
@@ -512,7 +518,7 @@ CMakeFiles/zero_latency.dir/clean:
 CMakeFiles/high_quality_video.dir/all: CMakeFiles/hydra_network.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/high_quality_video.dir/build.make CMakeFiles/high_quality_video.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/high_quality_video.dir/build.make CMakeFiles/high_quality_video.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target high_quality_video"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=5,6 "Built target high_quality_video"
 .PHONY : CMakeFiles/high_quality_video.dir/all
 
 # Build rule for subdir invocation for target.
@@ -529,7 +535,7 @@ high_quality_video: CMakeFiles/high_quality_video.dir/rule
 # codegen rule for target.
 CMakeFiles/high_quality_video.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/high_quality_video.dir/build.make CMakeFiles/high_quality_video.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=3,4 "Finished codegen for target high_quality_video"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=5,6 "Finished codegen for target high_quality_video"
 .PHONY : CMakeFiles/high_quality_video.dir/codegen
 
 # clean rule for target.
@@ -544,7 +550,7 @@ CMakeFiles/high_quality_video.dir/clean:
 CMakeFiles/robust_video.dir/all: CMakeFiles/hydra_network.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/robust_video.dir/build.make CMakeFiles/robust_video.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/robust_video.dir/build.make CMakeFiles/robust_video.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=23,24 "Built target robust_video"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=25,26 "Built target robust_video"
 .PHONY : CMakeFiles/robust_video.dir/all
 
 # Build rule for subdir invocation for target.
@@ -561,13 +567,77 @@ robust_video: CMakeFiles/robust_video.dir/rule
 # codegen rule for target.
 CMakeFiles/robust_video.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/robust_video.dir/build.make CMakeFiles/robust_video.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=23,24 "Finished codegen for target robust_video"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=25,26 "Finished codegen for target robust_video"
 .PHONY : CMakeFiles/robust_video.dir/codegen
 
 # clean rule for target.
 CMakeFiles/robust_video.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/robust_video.dir/build.make CMakeFiles/robust_video.dir/clean
 .PHONY : CMakeFiles/robust_video.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/simple_video.dir
+
+# All Build rule for target.
+CMakeFiles/simple_video.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_video.dir/build.make CMakeFiles/simple_video.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_video.dir/build.make CMakeFiles/simple_video.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=33,34 "Built target simple_video"
+.PHONY : CMakeFiles/simple_video.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/simple_video.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/simple_video.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/simple_video.dir/rule
+
+# Convenience name for target.
+simple_video: CMakeFiles/simple_video.dir/rule
+.PHONY : simple_video
+
+# codegen rule for target.
+CMakeFiles/simple_video.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_video.dir/build.make CMakeFiles/simple_video.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=33,34 "Finished codegen for target simple_video"
+.PHONY : CMakeFiles/simple_video.dir/codegen
+
+# clean rule for target.
+CMakeFiles/simple_video.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_video.dir/build.make CMakeFiles/simple_video.dir/clean
+.PHONY : CMakeFiles/simple_video.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/final_video.dir
+
+# All Build rule for target.
+CMakeFiles/final_video.dir/all: CMakeFiles/hydra_network.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_video.dir/build.make CMakeFiles/final_video.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_video.dir/build.make CMakeFiles/final_video.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target final_video"
+.PHONY : CMakeFiles/final_video.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/final_video.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/final_video.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/final_video.dir/rule
+
+# Convenience name for target.
+final_video: CMakeFiles/final_video.dir/rule
+.PHONY : final_video
+
+# codegen rule for target.
+CMakeFiles/final_video.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_video.dir/build.make CMakeFiles/final_video.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=3,4 "Finished codegen for target final_video"
+.PHONY : CMakeFiles/final_video.dir/codegen
+
+# clean rule for target.
+CMakeFiles/final_video.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_video.dir/build.make CMakeFiles/final_video.dir/clean
+.PHONY : CMakeFiles/final_video.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

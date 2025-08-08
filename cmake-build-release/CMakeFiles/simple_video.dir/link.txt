@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/simple_video.dir/apps/simple_video/main.cpp.o -o simple_video  -lavcodec -lavformat -lavutil -lswscale

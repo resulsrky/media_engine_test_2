@@ -12,5 +12,7 @@
 /home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/zero_latency.dir
 /home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/high_quality_video.dir
 /home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/robust_video.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/simple_video.dir
+/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/final_video.dir
 /home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/edit_cache.dir
 /home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles/rebuild_cache.dir

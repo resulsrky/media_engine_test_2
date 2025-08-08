@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-Release-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.20"
@@ -28,11 +28,13 @@
 						10,
 						11,
 						12,
-						13
+						13,
+						14,
+						15
 					]
 				}
 			],
-			"name" : "Debug",
+			"name" : "Release",
 			"projects" : 
 			[
 				{
@@ -56,7 +58,9 @@
 						10,
 						11,
 						12,
-						13
+						13,
+						14,
+						15
 					]
 				}
 			],
@@ -65,98 +69,112 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "duplex_ffmpeg_app::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-duplex_ffmpeg_app-Debug-2ef8c089e5a1e21a5d4c.json",
+					"jsonFile" : "target-duplex_ffmpeg_app-Release-89fe91f5b14862318e94.json",
 					"name" : "duplex_ffmpeg_app",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
+					"id" : "final_video::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-final_video-Release-f773b7a6285008e8d924.json",
+					"name" : "final_video",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
 					"id" : "high_quality_video::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-high_quality_video-Debug-14f0a103f5b098b8ba0d.json",
+					"jsonFile" : "target-high_quality_video-Release-ee9cbe0e7b7c32da257c.json",
 					"name" : "high_quality_video",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "hydra_media_ffmpeg::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-hydra_media_ffmpeg-Debug-40a67f8764fc31a09736.json",
+					"jsonFile" : "target-hydra_media_ffmpeg-Release-08a40227e32e6c4c9ce9.json",
 					"name" : "hydra_media_ffmpeg",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "hydra_network::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-hydra_network-Debug-1d24816ba8ea8cc83896.json",
+					"jsonFile" : "target-hydra_network-Release-1db662622565a6e31d82.json",
 					"name" : "hydra_network",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "realtime_video::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-realtime_video-Debug-6d1dcfe3ac72aff38ea3.json",
+					"jsonFile" : "target-realtime_video-Release-8adf6dcfd44f8f1b4253.json",
 					"name" : "realtime_video",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "receiver_app::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-receiver_app-Debug-15b5aef1954ad684a5da.json",
+					"jsonFile" : "target-receiver_app-Release-1fbd121abd366b1445a1.json",
 					"name" : "receiver_app",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "receiver_ffmpeg_app::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-receiver_ffmpeg_app-Debug-c45e80ae73d5cc6965ba.json",
+					"jsonFile" : "target-receiver_ffmpeg_app-Release-7c84a4e5b4ca7a03c7e2.json",
 					"name" : "receiver_ffmpeg_app",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "receiver_video_app::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-receiver_video_app-Debug-36c3cf6c0dd8f2e02c5e.json",
+					"jsonFile" : "target-receiver_video_app-Release-6456c9183570f15e1461.json",
 					"name" : "receiver_video_app",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "robust_video::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-robust_video-Debug-9b191e08f07c4dc9eadf.json",
+					"jsonFile" : "target-robust_video-Release-aceea5e0758a023b553f.json",
 					"name" : "robust_video",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "sender_app::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-sender_app-Debug-9ae9a57d839891d7bece.json",
+					"jsonFile" : "target-sender_app-Release-3ea3423a0ca6b11bdfa1.json",
 					"name" : "sender_app",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "sender_ffmpeg_app::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-sender_ffmpeg_app-Debug-f8c93ea211a4dfe2056c.json",
+					"jsonFile" : "target-sender_ffmpeg_app-Release-fd3366baf36cd12de520.json",
 					"name" : "sender_ffmpeg_app",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "sender_video_app::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-sender_video_app-Debug-3c1b18af58a2dc98ef97.json",
+					"jsonFile" : "target-sender_video_app-Release-2b5ee6377ce5a11abe8a.json",
 					"name" : "sender_video_app",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
+					"id" : "simple_video::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-simple_video-Release-5871df41b8849ba7469e.json",
+					"name" : "simple_video",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
 					"id" : "video_engine::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-video_engine-Debug-a27bfb23fa8d20d271f8.json",
+					"jsonFile" : "target-video_engine-Release-193da8da94bfe8c94169.json",
 					"name" : "video_engine",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "zero_latency::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-zero_latency-Debug-4268d6c31ce93d187dbe.json",
+					"jsonFile" : "target-zero_latency-Release-70348fdb46de45a34511.json",
 					"name" : "zero_latency",
 					"projectIndex" : 0
 				}
@@ -166,7 +184,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug",
+		"build" : "/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-release",
 		"source" : "/home/raul_cto/Documents/GitHub/media_engine_test"
 	},
 	"version" : 

@@ -78,12 +78,12 @@ public:
         struct v4l2_streamparm parm{};
         parm.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
         parm.parm.capture.timeperframe.numerator = 1;
-        parm.parm.capture.timeperframe.denominator = 30; // 30 FPS instead of 60
+        parm.parm.capture.timeperframe.denominator = 25; // 25 FPS - daha kararlı
         ioctl(fd_, VIDIOC_S_PARM, &parm);
 
         // Setup memory mapping
         struct v4l2_requestbuffers req{};
-        req.count = 4; // More buffers for stability
+        req.count = 6; // Daha fazla buffer - paket kaybına karşı
         req.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
         req.memory = V4L2_MEMORY_MMAP;
 
@@ -152,30 +152,36 @@ private:
             return false;
         }
 
-        // Robust encoding settings - prioritize stability over speed
+        // PPS SORUNUNU ÇÖZEN AYARLAR - Her keyframe'de SPS/PPS gönder
         encoder_->width = width_;
         encoder_->height = height_;
-        encoder_->time_base = {1, 30}; // 30 FPS
-        encoder_->framerate = {30, 1};
+        encoder_->time_base = {1, 25}; // 25 FPS
+        encoder_->framerate = {25, 1};
         encoder_->pix_fmt = AV_PIX_FMT_YUV420P;
-        encoder_->bit_rate = 1500000; // 1.5 Mbps - balanced bitrate
-        encoder_->rc_max_rate = 2000000; // 2 Mbps max
-        encoder_->rc_buffer_size = 1000000; // 1 MB buffer
-        encoder_->gop_size = 30; // GOP size = FPS for 1 second keyframe interval
-        encoder_->max_b_frames = 0; // No B-frames for lower latency
-        encoder_->keyint_min = 30; // Force keyframe every second
+        encoder_->bit_rate = 800000; // 800 kbps - daha düşük, daha kararlı
+        encoder_->rc_max_rate = 1200000; // 1.2 Mbps max
+        encoder_->rc_buffer_size = 800000; // 800KB buffer
+        encoder_->gop_size = 10; // ÇOK SIK KEYFRAME - her 10 frame'de (0.33 saniye)
+        encoder_->max_b_frames = 0; // No B-frames
+        encoder_->keyint_min = 10; // Min keyframe interval da 10
         
-        // IMPORTANT: Robust encoder options
-        av_opt_set(encoder_->priv_data, "preset", "fast", 0); // Fast but stable
-        av_opt_set(encoder_->priv_data, "tune", "zerolatency", 0); // Low latency
+        // GLOBAL HEADER - SPS/PPS her zaman başta
+        encoder_->flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
+        
+        // ULTRA ROBUST encoder options
+        av_opt_set(encoder_->priv_data, "preset", "ultrafast", 0); // En hızlı
+        av_opt_set(encoder_->priv_data, "tune", "zerolatency", 0); 
         av_opt_set(encoder_->priv_data, "profile", "baseline", 0); // Baseline profile
-        av_opt_set_int(encoder_->priv_data, "crf", 23, 0); // Good quality
-        av_opt_set_int(encoder_->priv_data, "threads", 2, 0); // 2 threads
+        av_opt_set_int(encoder_->priv_data, "crf", 30, 0); // Daha düşük kalite ama kararlı
+        av_opt_set_int(encoder_->priv_data, "threads", 1, 0); // Tek thread - daha kararlı
         
-        // Error resilience options
-        av_opt_set_int(encoder_->priv_data, "slice-max-size", 1000, 0); // Smaller slices
+        // PPS TEKRARLAMA ve hata direnci
+        av_opt_set_int(encoder_->priv_data, "slice-max-size", 500, 0); // Daha küçük slice'lar
         av_opt_set_int(encoder_->priv_data, "intra-refresh", 1, 0); // Intra refresh
         av_opt_set_int(encoder_->priv_data, "forced-idr", 1, 0); // Force IDR frames
+        av_opt_set_int(encoder_->priv_data, "repeat-headers", 1, 0); // SPS/PPS tekrarla
+        av_opt_set_int(encoder_->priv_data, "aud", 1, 0); // Access unit delimiters
+        av_opt_set_int(encoder_->priv_data, "sc_threshold", 0, 0); // Scene change kapalı
         
         if (avcodec_open2(encoder_, codec, nullptr) < 0) {
             std::cerr << "Failed to open encoder" << std::endl;
@@ -337,16 +343,21 @@ public:
             return false;
         }
 
-        // Robust decoder settings
-        decoder_->thread_count = 2;
+        // PPS HATALARINDAN KORUNMA - Ultra robust decoder settings
+        decoder_->thread_count = 1; // Tek thread daha kararlı
         decoder_->thread_type = FF_THREAD_FRAME;
         
-        // Error concealment and resilience
-        decoder_->error_concealment = FF_EC_GUESS_MVS | FF_EC_DEBLOCK;
-        decoder_->err_recognition = AV_EF_CRCCHECK | AV_EF_BITSTREAM;
-        decoder_->skip_frame = AVDISCARD_DEFAULT; // Don't skip frames
-        decoder_->skip_idct = AVDISCARD_DEFAULT;
-        decoder_->skip_loop_filter = AVDISCARD_DEFAULT;
+        // MÜKEMmEL ERROR CONCEALMENT - PPS kaybolsa bile devam et
+        decoder_->error_concealment = FF_EC_GUESS_MVS | FF_EC_DEBLOCK | FF_EC_FAVOR_INTER;
+        decoder_->err_recognition = AV_EF_IGNORE_ERR; // BÜTÜN HATALARI GÖRMEZDEN GEL!
+        decoder_->skip_frame = AVDISCARD_NONE; // Hiç frame atma
+        decoder_->skip_idct = AVDISCARD_NONE; // IDCT atma
+        decoder_->skip_loop_filter = AVDISCARD_NONE; // Loop filter atma
+        
+        // PPS/SPS eksik olduğunda devam et
+        decoder_->flags |= AV_CODEC_FLAG_OUTPUT_CORRUPT; // Bozuk frame'leri bile göster
+        decoder_->flags2 |= AV_CODEC_FLAG2_IGNORE_CROP; // Crop hatalarını görmezden gel
+        decoder_->flags2 |= AV_CODEC_FLAG2_FAST; // Hızlı decode, hata kontrolü az
 
         if (avcodec_open2(decoder_, codec, nullptr) < 0) {
             std::cerr << "Failed to open decoder" << std::endl;
@@ -621,8 +632,8 @@ int main(int argc, char* argv[]) {
             break;
         }
 
-        // Small sleep to prevent CPU overload
-        std::this_thread::sleep_for(1ms);
+        // 25 FPS timing (40ms per frame)
+        std::this_thread::sleep_for(40ms);
     }
 
     std::cout << "Robust video engine kapatılıyor..." << std::endl;

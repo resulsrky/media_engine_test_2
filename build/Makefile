@@ -298,6 +298,32 @@ robust_video/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/robust_video.dir/build.make CMakeFiles/robust_video.dir/build
 .PHONY : robust_video/fast
 
+#=============================================================================
+# Target rules for targets named simple_video
+
+# Build rule for target.
+simple_video: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 simple_video
+.PHONY : simple_video
+
+# fast build rule for target.
+simple_video/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_video.dir/build.make CMakeFiles/simple_video.dir/build
+.PHONY : simple_video/fast
+
+#=============================================================================
+# Target rules for targets named final_video
+
+# Build rule for target.
+final_video: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 final_video
+.PHONY : final_video
+
+# fast build rule for target.
+final_video/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_video.dir/build.make CMakeFiles/final_video.dir/build
+.PHONY : final_video/fast
+
 apps/duplex_ffmpeg/main.o: apps/duplex_ffmpeg/main.cpp.o
 .PHONY : apps/duplex_ffmpeg/main.o
 
@@ -321,6 +347,30 @@ apps/duplex_ffmpeg/main.s: apps/duplex_ffmpeg/main.cpp.s
 apps/duplex_ffmpeg/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/duplex_ffmpeg_app.dir/build.make CMakeFiles/duplex_ffmpeg_app.dir/apps/duplex_ffmpeg/main.cpp.s
 .PHONY : apps/duplex_ffmpeg/main.cpp.s
+
+apps/final_video/main.o: apps/final_video/main.cpp.o
+.PHONY : apps/final_video/main.o
+
+# target to build an object file
+apps/final_video/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_video.dir/build.make CMakeFiles/final_video.dir/apps/final_video/main.cpp.o
+.PHONY : apps/final_video/main.cpp.o
+
+apps/final_video/main.i: apps/final_video/main.cpp.i
+.PHONY : apps/final_video/main.i
+
+# target to preprocess a source file
+apps/final_video/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_video.dir/build.make CMakeFiles/final_video.dir/apps/final_video/main.cpp.i
+.PHONY : apps/final_video/main.cpp.i
+
+apps/final_video/main.s: apps/final_video/main.cpp.s
+.PHONY : apps/final_video/main.s
+
+# target to generate assembly for a file
+apps/final_video/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_video.dir/build.make CMakeFiles/final_video.dir/apps/final_video/main.cpp.s
+.PHONY : apps/final_video/main.cpp.s
 
 apps/high_quality_video/main.o: apps/high_quality_video/main.cpp.o
 .PHONY : apps/high_quality_video/main.o
@@ -537,6 +587,30 @@ apps/sender_video/main.s: apps/sender_video/main.cpp.s
 apps/sender_video/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sender_video_app.dir/build.make CMakeFiles/sender_video_app.dir/apps/sender_video/main.cpp.s
 .PHONY : apps/sender_video/main.cpp.s
+
+apps/simple_video/main.o: apps/simple_video/main.cpp.o
+.PHONY : apps/simple_video/main.o
+
+# target to build an object file
+apps/simple_video/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_video.dir/build.make CMakeFiles/simple_video.dir/apps/simple_video/main.cpp.o
+.PHONY : apps/simple_video/main.cpp.o
+
+apps/simple_video/main.i: apps/simple_video/main.cpp.i
+.PHONY : apps/simple_video/main.i
+
+# target to preprocess a source file
+apps/simple_video/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_video.dir/build.make CMakeFiles/simple_video.dir/apps/simple_video/main.cpp.i
+.PHONY : apps/simple_video/main.cpp.i
+
+apps/simple_video/main.s: apps/simple_video/main.cpp.s
+.PHONY : apps/simple_video/main.s
+
+# target to generate assembly for a file
+apps/simple_video/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_video.dir/build.make CMakeFiles/simple_video.dir/apps/simple_video/main.cpp.s
+.PHONY : apps/simple_video/main.cpp.s
 
 apps/video_engine/main.o: apps/video_engine/main.cpp.o
 .PHONY : apps/video_engine/main.o
@@ -787,6 +861,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... duplex_ffmpeg_app"
+	@echo "... final_video"
 	@echo "... high_quality_video"
 	@echo "... hydra_media_ffmpeg"
 	@echo "... hydra_network"
@@ -798,11 +873,15 @@ help:
 	@echo "... sender_app"
 	@echo "... sender_ffmpeg_app"
 	@echo "... sender_video_app"
+	@echo "... simple_video"
 	@echo "... video_engine"
 	@echo "... zero_latency"
 	@echo "... apps/duplex_ffmpeg/main.o"
 	@echo "... apps/duplex_ffmpeg/main.i"
 	@echo "... apps/duplex_ffmpeg/main.s"
+	@echo "... apps/final_video/main.o"
+	@echo "... apps/final_video/main.i"
+	@echo "... apps/final_video/main.s"
 	@echo "... apps/high_quality_video/main.o"
 	@echo "... apps/high_quality_video/main.i"
 	@echo "... apps/high_quality_video/main.s"
@@ -830,6 +909,9 @@ help:
 	@echo "... apps/sender_video/main.o"
 	@echo "... apps/sender_video/main.i"
 	@echo "... apps/sender_video/main.s"
+	@echo "... apps/simple_video/main.o"
+	@echo "... apps/simple_video/main.i"
+	@echo "... apps/simple_video/main.s"
 	@echo "... apps/video_engine/main.o"
 	@echo "... apps/video_engine/main.i"
 	@echo "... apps/video_engine/main.s"
