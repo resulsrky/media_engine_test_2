@@ -324,6 +324,19 @@ final_video/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_video.dir/build.make CMakeFiles/final_video.dir/build
 .PHONY : final_video/fast
 
+#=============================================================================
+# Target rules for targets named ultra_fast_video
+
+# Build rule for target.
+ultra_fast_video: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ultra_fast_video
+.PHONY : ultra_fast_video
+
+# fast build rule for target.
+ultra_fast_video/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ultra_fast_video.dir/build.make CMakeFiles/ultra_fast_video.dir/build
+.PHONY : ultra_fast_video/fast
+
 apps/duplex_ffmpeg/main.o: apps/duplex_ffmpeg/main.cpp.o
 .PHONY : apps/duplex_ffmpeg/main.o
 
@@ -612,6 +625,30 @@ apps/simple_video/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_video.dir/build.make CMakeFiles/simple_video.dir/apps/simple_video/main.cpp.s
 .PHONY : apps/simple_video/main.cpp.s
 
+apps/ultra_fast_video/main.o: apps/ultra_fast_video/main.cpp.o
+.PHONY : apps/ultra_fast_video/main.o
+
+# target to build an object file
+apps/ultra_fast_video/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ultra_fast_video.dir/build.make CMakeFiles/ultra_fast_video.dir/apps/ultra_fast_video/main.cpp.o
+.PHONY : apps/ultra_fast_video/main.cpp.o
+
+apps/ultra_fast_video/main.i: apps/ultra_fast_video/main.cpp.i
+.PHONY : apps/ultra_fast_video/main.i
+
+# target to preprocess a source file
+apps/ultra_fast_video/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ultra_fast_video.dir/build.make CMakeFiles/ultra_fast_video.dir/apps/ultra_fast_video/main.cpp.i
+.PHONY : apps/ultra_fast_video/main.cpp.i
+
+apps/ultra_fast_video/main.s: apps/ultra_fast_video/main.cpp.s
+.PHONY : apps/ultra_fast_video/main.s
+
+# target to generate assembly for a file
+apps/ultra_fast_video/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ultra_fast_video.dir/build.make CMakeFiles/ultra_fast_video.dir/apps/ultra_fast_video/main.cpp.s
+.PHONY : apps/ultra_fast_video/main.cpp.s
+
 apps/video_engine/main.o: apps/video_engine/main.cpp.o
 .PHONY : apps/video_engine/main.o
 
@@ -874,6 +911,7 @@ help:
 	@echo "... sender_ffmpeg_app"
 	@echo "... sender_video_app"
 	@echo "... simple_video"
+	@echo "... ultra_fast_video"
 	@echo "... video_engine"
 	@echo "... zero_latency"
 	@echo "... apps/duplex_ffmpeg/main.o"
@@ -912,6 +950,9 @@ help:
 	@echo "... apps/simple_video/main.o"
 	@echo "... apps/simple_video/main.i"
 	@echo "... apps/simple_video/main.s"
+	@echo "... apps/ultra_fast_video/main.o"
+	@echo "... apps/ultra_fast_video/main.i"
+	@echo "... apps/ultra_fast_video/main.s"
 	@echo "... apps/video_engine/main.o"
 	@echo "... apps/video_engine/main.i"
 	@echo "... apps/video_engine/main.s"

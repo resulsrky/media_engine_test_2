@@ -76,4 +76,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/robust_video.dir/DependInfo.cmake"
   "CMakeFiles/simple_video.dir/DependInfo.cmake"
   "CMakeFiles/final_video.dir/DependInfo.cmake"
+  "CMakeFiles/ultra_fast_video.dir/DependInfo.cmake"
   )

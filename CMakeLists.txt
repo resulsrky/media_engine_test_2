@@ -132,6 +132,13 @@ target_link_libraries(final_video PRIVATE hydra_network)
 target_link_libraries(final_video PRIVATE ${SDL2_LIBRARIES})
 target_include_directories(final_video SYSTEM PRIVATE ${SDL2_INCLUDE_DIRS})
 target_link_libraries(final_video PRIVATE avcodec avformat avutil swscale)
+
+# Ultra fast video engine (ZERO DELAY + MIRRORED CAMERA)
+add_executable(ultra_fast_video apps/ultra_fast_video/main.cpp)
+target_link_libraries(ultra_fast_video PRIVATE hydra_network)
+target_link_libraries(ultra_fast_video PRIVATE ${SDL2_LIBRARIES})
+target_include_directories(ultra_fast_video SYSTEM PRIVATE ${SDL2_INCLUDE_DIRS})
+target_link_libraries(ultra_fast_video PRIVATE avcodec avformat avutil swscale)
   endif()
 endif()
 

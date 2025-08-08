@@ -79,6 +79,7 @@ all: CMakeFiles/high_quality_video.dir/all
 all: CMakeFiles/robust_video.dir/all
 all: CMakeFiles/simple_video.dir/all
 all: CMakeFiles/final_video.dir/all
+all: CMakeFiles/ultra_fast_video.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
@@ -98,6 +99,7 @@ codegen: CMakeFiles/high_quality_video.dir/codegen
 codegen: CMakeFiles/robust_video.dir/codegen
 codegen: CMakeFiles/simple_video.dir/codegen
 codegen: CMakeFiles/final_video.dir/codegen
+codegen: CMakeFiles/ultra_fast_video.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -121,6 +123,7 @@ clean: CMakeFiles/high_quality_video.dir/clean
 clean: CMakeFiles/robust_video.dir/clean
 clean: CMakeFiles/simple_video.dir/clean
 clean: CMakeFiles/final_video.dir/clean
+clean: CMakeFiles/ultra_fast_video.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -422,7 +425,7 @@ CMakeFiles/video_engine.dir/all: CMakeFiles/hydra_network.dir/all
 CMakeFiles/video_engine.dir/all: CMakeFiles/hydra_media_ffmpeg.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/video_engine.dir/build.make CMakeFiles/video_engine.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/video_engine.dir/build.make CMakeFiles/video_engine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=35,36 "Built target video_engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=37,38 "Built target video_engine"
 .PHONY : CMakeFiles/video_engine.dir/all
 
 # Build rule for subdir invocation for target.
@@ -439,7 +442,7 @@ video_engine: CMakeFiles/video_engine.dir/rule
 # codegen rule for target.
 CMakeFiles/video_engine.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/video_engine.dir/build.make CMakeFiles/video_engine.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=35,36 "Finished codegen for target video_engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=37,38 "Finished codegen for target video_engine"
 .PHONY : CMakeFiles/video_engine.dir/codegen
 
 # clean rule for target.
@@ -486,7 +489,7 @@ CMakeFiles/realtime_video.dir/clean:
 CMakeFiles/zero_latency.dir/all: CMakeFiles/hydra_network.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/zero_latency.dir/build.make CMakeFiles/zero_latency.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/zero_latency.dir/build.make CMakeFiles/zero_latency.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=37,38 "Built target zero_latency"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=39,40 "Built target zero_latency"
 .PHONY : CMakeFiles/zero_latency.dir/all
 
 # Build rule for subdir invocation for target.
@@ -503,7 +506,7 @@ zero_latency: CMakeFiles/zero_latency.dir/rule
 # codegen rule for target.
 CMakeFiles/zero_latency.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/zero_latency.dir/build.make CMakeFiles/zero_latency.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=37,38 "Finished codegen for target zero_latency"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=39,40 "Finished codegen for target zero_latency"
 .PHONY : CMakeFiles/zero_latency.dir/codegen
 
 # clean rule for target.
@@ -638,6 +641,38 @@ CMakeFiles/final_video.dir/codegen:
 CMakeFiles/final_video.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_video.dir/build.make CMakeFiles/final_video.dir/clean
 .PHONY : CMakeFiles/final_video.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/ultra_fast_video.dir
+
+# All Build rule for target.
+CMakeFiles/ultra_fast_video.dir/all: CMakeFiles/hydra_network.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ultra_fast_video.dir/build.make CMakeFiles/ultra_fast_video.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ultra_fast_video.dir/build.make CMakeFiles/ultra_fast_video.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=35,36 "Built target ultra_fast_video"
+.PHONY : CMakeFiles/ultra_fast_video.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/ultra_fast_video.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/ultra_fast_video.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/ultra_fast_video.dir/rule
+
+# Convenience name for target.
+ultra_fast_video: CMakeFiles/ultra_fast_video.dir/rule
+.PHONY : ultra_fast_video
+
+# codegen rule for target.
+CMakeFiles/ultra_fast_video.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ultra_fast_video.dir/build.make CMakeFiles/ultra_fast_video.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/raul_cto/Documents/GitHub/media_engine_test/cmake-build-debug/CMakeFiles --progress-num=35,36 "Finished codegen for target ultra_fast_video"
+.PHONY : CMakeFiles/ultra_fast_video.dir/codegen
+
+# clean rule for target.
+CMakeFiles/ultra_fast_video.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ultra_fast_video.dir/build.make CMakeFiles/ultra_fast_video.dir/clean
+.PHONY : CMakeFiles/ultra_fast_video.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

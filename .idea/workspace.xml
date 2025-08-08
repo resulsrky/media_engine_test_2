@@ -17,6 +17,7 @@
       <config projectName="Hydra" targetName="zero_latency" />
       <config projectName="Hydra" targetName="receiver_video_app" />
       <config projectName="Hydra" targetName="hydra_media_ffmpeg" />
+      <config projectName="Hydra" targetName="ultra_fast_video" />
       <config projectName="Hydra" targetName="simple_video" />
       <config projectName="Hydra" targetName="final_video" />
       <config projectName="Hydra" targetName="receiver_ffmpeg_app" />
@@ -172,6 +173,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ultra_fast_video" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Hydra" TARGET_NAME="ultra_fast_video" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="Hydra" RUN_TARGET_NAME="ultra_fast_video">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="video_engine" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Hydra" TARGET_NAME="video_engine" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="Hydra" RUN_TARGET_NAME="video_engine">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -197,6 +203,7 @@
       <item itemvalue="CMake Application.sender_ffmpeg_app" />
       <item itemvalue="CMake Application.sender_video_app" />
       <item itemvalue="CMake Application.simple_video" />
+      <item itemvalue="CMake Application.ultra_fast_video" />
       <item itemvalue="CMake Application.video_engine" />
       <item itemvalue="CMake Application.zero_latency" />
     </list>

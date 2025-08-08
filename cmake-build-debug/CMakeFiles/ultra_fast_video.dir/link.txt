@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/ultra_fast_video.dir/apps/ultra_fast_video/main.cpp.o -o ultra_fast_video  libhydra_network.a -lSDL2 -lavcodec -lavformat -lavutil -lswscale
