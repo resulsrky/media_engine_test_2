@@ -91,6 +91,22 @@ if(FFMPEG_FOUND)
     target_link_libraries(duplex_ffmpeg_app PRIVATE hydra_network hydra_media_ffmpeg)
     add_executable(video_engine apps/video_engine/main.cpp)
     target_link_libraries(video_engine PRIVATE hydra_network hydra_media_ffmpeg)
+    
+    # Ultra-low latency video engine
+    add_executable(realtime_video apps/realtime_video/main.cpp)
+    target_link_libraries(realtime_video PRIVATE hydra_network)
+    target_link_libraries(realtime_video PRIVATE ${SDL2_LIBRARIES})
+    target_include_directories(realtime_video SYSTEM PRIVATE ${SDL2_INCLUDE_DIRS})
+    
+    # FFmpeg libraries via pkg-config
+    target_link_libraries(realtime_video PRIVATE avcodec avformat avutil swscale)
+    
+    # Zero-latency video engine (extreme optimization)
+    add_executable(zero_latency apps/zero_latency/main.cpp)
+    target_link_libraries(zero_latency PRIVATE hydra_network)
+    target_link_libraries(zero_latency PRIVATE ${SDL2_LIBRARIES})
+    target_include_directories(zero_latency SYSTEM PRIVATE ${SDL2_INCLUDE_DIRS})
+    target_link_libraries(zero_latency PRIVATE avcodec avformat avutil swscale)
   endif()
 endif()
 
