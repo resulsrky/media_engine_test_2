@@ -107,6 +107,13 @@ if(FFMPEG_FOUND)
     target_link_libraries(zero_latency PRIVATE ${SDL2_LIBRARIES})
     target_include_directories(zero_latency SYSTEM PRIVATE ${SDL2_INCLUDE_DIRS})
     target_link_libraries(zero_latency PRIVATE avcodec avformat avutil swscale)
+    
+    # High quality video engine (HD quality with high FPS)
+    add_executable(high_quality_video apps/high_quality_video/main.cpp)
+    target_link_libraries(high_quality_video PRIVATE hydra_network)
+    target_link_libraries(high_quality_video PRIVATE ${SDL2_LIBRARIES})
+    target_include_directories(high_quality_video SYSTEM PRIVATE ${SDL2_INCLUDE_DIRS})
+    target_link_libraries(high_quality_video PRIVATE avcodec avformat avutil swscale)
   endif()
 endif()
 
