@@ -15,7 +15,6 @@ inline void set_int(GstElement* e, const char* prop, int v) {
 inline void set_bool(GstElement* e, const char* prop, gboolean v) {
   g_object_set(G_OBJECT(e), prop, v, NULL);
 }
-// enum/flags gibi string argümanlarını gst-launch tarzı set etmek için:
 inline void set_arg(GstElement* e, const char* prop, const char* val) {
   gst_util_set_object_arg(G_OBJECT(e), prop, val);
 }

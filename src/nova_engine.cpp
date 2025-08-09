@@ -16,68 +16,30 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-// ESC yakalamak için
-#include <termios.h>
-#include <fcntl.h>
-
 static std::atomic<bool> g_stop(false);
-static void sig_handler(int){ g_stop = true; }
+static GMainLoop* g_loop = nullptr;
 
-// -------- ESC Key Watcher (terminal) --------
-class KeyWatcher {
- public:
-  KeyWatcher() {
-    tcgetattr(STDIN_FILENO, &orig_);
-    termios raw = orig_;
-    raw.c_lflag &= ~(ICANON | ECHO);
-    raw.c_cc[VMIN] = 0;   // non-blocking
-    raw.c_cc[VTIME] = 0;
-    tcsetattr(STDIN_FILENO, TCSANOW, &raw);
-    // non-blocking read
-    int flags = fcntl(STDIN_FILENO, F_GETFL, 0);
-    fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
-  }
-  ~KeyWatcher() {
-    tcsetattr(STDIN_FILENO, TCSANOW, &orig_);
-  }
-  void run() {
-    std::cout << "[key] Çıkmak için ESC veya 'q'\n";
-    while (!g_stop) {
-      char buf[8];
-      int n = read(STDIN_FILENO, buf, sizeof(buf));
-      if (n > 0) {
-        for (int i=0;i<n;i++) {
-          if ((unsigned char)buf[i] == 27 /*ESC*/ || buf[i] == 'q' || buf[i] == 'Q') {
-            g_stop = true; return;
-          }
-        }
-      }
-      std::this_thread::sleep_for(std::chrono::milliseconds(50));
-    }
-  }
- private:
-  termios orig_{};
-};
+static void sig_handler(int){
+  g_stop = true;
+  if (g_loop) g_main_loop_quit(g_loop);
+}
 
 struct Args {
-  // zorunlu arg'lar (CLI)
   std::string peer_ip;
   int video_send_port;
   int video_listen_port;
   int ctrl_send_port;
   int ctrl_listen_port;
 
-  // opsiyoneller (default)
-  bool use_ts = false;      // false=RTP/H264 (önerilen), true=MPEG-TS CBR
-  int  mtu = 1200;          // TS için 1316 öner
+  bool use_ts = false;
+  int  mtu = 1200;
   int  bitrate_kbps = 18000;
   int  keyint = 60;
-  int  latency_ms = 120;
+  int  latency_ms = 200;
 
-  // seçilen profil
   std::string device = "/dev/video0";
   int width = 1280, height = 720, fps = 30;
-  int prefer_mjpg = 1; // 1: image/jpeg + jpegdec, 0: video/x-raw
+  int prefer_mjpg = 1;
 };
 
 struct CamProfile {
@@ -87,12 +49,10 @@ struct CamProfile {
   long long score() const { return 1LL * width * height * fps; }
 };
 
-// ---- gerçekçi sınırlar ----
 static constexpr int MAX_W = 7680;
 static constexpr int MAX_H = 4320;
 static constexpr int MAX_FPS = 240;
 
-// Büyükten küçüğe denenecek modlar
 static const int PREFERRED_MODES[][3] = {
   {3840,2160,60}, {3840,2160,30},
   {2560,1440,60}, {2560,1440,30},
@@ -105,13 +65,10 @@ static const int PREFERRED_MODES[][3] = {
 };
 static constexpr int PREFERRED_COUNT = sizeof(PREFERRED_MODES)/sizeof(PREFERRED_MODES[0]);
 
-// width/height: tekil, range, list -> min,max çıkar
+// ---- helpers to read caps ranges ----
 static bool get_int_min_max(const GValue* v, int& out_min, int& out_max) {
   if (!v) return false;
-  if (G_VALUE_HOLDS_INT(v)) {
-    out_min = out_max = g_value_get_int(v);
-    return true;
-  }
+  if (G_VALUE_HOLDS_INT(v)) { out_min = out_max = g_value_get_int(v); return true; }
   if (GST_VALUE_HOLDS_INT_RANGE(v)) {
     out_min = gst_value_get_int_range_min(v);
     out_max = gst_value_get_int_range_max(v);
@@ -131,7 +88,6 @@ static bool get_int_min_max(const GValue* v, int& out_min, int& out_max) {
   return false;
 }
 
-// fps: tekil fraction, range, list -> min,max çıkar
 static bool get_fps_min_max(const GValue* v, int& out_min, int& out_max) {
   auto frac_to_int = [](const GValue* fv)->int{
     int n = gst_value_get_fraction_numerator(fv);
@@ -170,7 +126,7 @@ static bool get_fps_min_max(const GValue* v, int& out_min, int& out_max) {
   return true;
 }
 
-// --- ADIM 1: Caps'ten aralıkları oku ve bir aday listele ---
+// --- caps enumeration & validation ---
 struct CapsWindow { int wmin,wmax,hmin,hmax,fmin,fmax; bool mjpg; };
 
 static std::vector<CapsWindow> enumerate_caps(const std::string& devpath) {
@@ -196,7 +152,6 @@ static std::vector<CapsWindow> enumerate_caps(const std::string& devpath) {
     if (!get_int_min_max(gst_structure_get_value(s, "height"), hmin, hmax)) continue;
     get_fps_min_max(gst_structure_get_value(s, "framerate"), fmin, fmax);
 
-    // clamp
     wmax = std::min(wmax, MAX_W);
     hmax = std::min(hmax, MAX_H);
     fmax = std::min(fmax, MAX_FPS);
@@ -210,7 +165,6 @@ static std::vector<CapsWindow> enumerate_caps(const std::string& devpath) {
   return out;
 }
 
-// --- ADIM 2: Aday modu GERÇEKTEN açabiliyor muyuz? ---
 static bool validate_mode(const std::string& devpath, bool mjpg, int W, int H, int F) {
   GstElement* pipe = gst_pipeline_new("probe");
   if (!pipe) return false;
@@ -243,9 +197,7 @@ static bool validate_mode(const std::string& devpath, bool mjpg, int W, int H, i
   if (!linked) { gst_object_unref(pipe); return false; }
 
   GstStateChangeReturn r = gst_element_set_state(pipe, GST_STATE_PLAYING);
-  if (r == GST_STATE_CHANGE_ASYNC) {
-    r = gst_element_get_state(pipe, NULL, NULL, GST_SECOND);
-  }
+  if (r == GST_STATE_CHANGE_ASYNC) r = gst_element_get_state(pipe, NULL, NULL, GST_SECOND);
 
   bool ok = (r == GST_STATE_CHANGE_SUCCESS || r == GST_STATE_CHANGE_NO_PREROLL);
   gst_element_set_state(pipe, GST_STATE_NULL);
@@ -253,7 +205,6 @@ static bool validate_mode(const std::string& devpath, bool mjpg, int W, int H, i
   return ok;
 }
 
-// --- ADIM 3: /dev/videoN için en iyi GERÇEK modu bul (önce MJPG, sonra RAW) ---
 static std::optional<CamProfile> probe_device_best(const std::string& devpath) {
   auto windows = enumerate_caps(devpath);
   if (windows.empty()) return std::nullopt;
@@ -283,7 +234,6 @@ static std::optional<CamProfile> probe_device_best(const std::string& devpath) {
   return std::nullopt;
 }
 
-// /dev/video0..9 tarayıp en iyiyi seç
 static bool auto_select_best_camera(Args& a) {
   CamProfile best;
   bool found = false;
@@ -363,7 +313,7 @@ class ControlChannel {
       if (n <= 0) continue;
       buf[n] = 0;
       if (!strncmp(buf, "PING ", 5)) {
-        buf[1] = 'O'; buf[2] = 'N'; buf[3] = 'G'; // PONG
+        buf[1] = 'O'; buf[2] = 'N'; buf[3] = 'G';
         sendto(tx_fd_, buf, n, 0, (sockaddr*)&src, sizeof(src));
       } else if (!strncmp(buf, "PONG ", 5)) {
         long long t0 = atoll(buf+5);
@@ -381,14 +331,53 @@ class ControlChannel {
   std::thread send_thr_, recv_thr_;
 };
 
-// ---- gönderici boru hattı ----
+// ---- GStreamer Bus watcher (ERROR/EOS -> quit) ----
+static gboolean bus_cb(GstBus* /*bus*/, GstMessage* msg, gpointer user_data) {
+  const char* tag = static_cast<const char*>(user_data);
+  switch (GST_MESSAGE_TYPE(msg)) {
+    case GST_MESSAGE_ERROR: {
+      GError* err=nullptr; gchar* dbg=nullptr;
+      gst_message_parse_error(msg, &err, &dbg);
+      std::cerr << "[" << tag << "] ERROR: " << (err?err->message:"") << (dbg?std::string(" | ")+dbg:"") << std::endl;
+      if (err) g_error_free(err); if (dbg) g_free(dbg);
+      g_stop = true; if (g_loop) g_main_loop_quit(g_loop);
+      break;
+    }
+    case GST_MESSAGE_EOS:
+      std::cerr << "[" << tag << "] EOS\n";
+      g_stop = true; if (g_loop) g_main_loop_quit(g_loop);
+      break;
+    default: break;
+  }
+  return TRUE;
+}
+
+// ---- STDIN watcher (ESC/q -> quit) ----
+static gboolean stdin_cb(GIOChannel* ch, GIOCondition cond, gpointer) {
+  if (cond & (G_IO_HUP|G_IO_ERR|G_IO_NVAL)) { return TRUE; }
+  gchar buf[16]; gsize n=0; GError* err=nullptr;
+  GIOStatus s = g_io_channel_read_chars(ch, buf, sizeof(buf), &n, &err);
+  if (s == G_IO_STATUS_NORMAL && n>0) {
+    for (gsize i=0;i<n;i++) {
+      unsigned char c = (unsigned char)buf[i];
+      if (c==27 || c=='q' || c=='Q') {
+        std::cout << "[key] quit\n";
+        g_stop = true; if (g_loop) g_main_loop_quit(g_loop);
+        break;
+      }
+    }
+  }
+  if (err) g_error_free(err);
+  return TRUE; // watch devam
+}
+
+// ---- sender ----
 static GstElement* build_sender(const Args& a) {
   std::string enc_name = choose_h264_encoder();
   std::cerr << "[nova] encoder: " << enc_name << std::endl;
 
   GstElement* pipe = gst_pipeline_new("sender");
 
-  // kaynak + decode
   GstElement* src = gst_element_factory_make("v4l2src", "src");
   CHECK_ELEM(src, "v4l2src");
   set_str(src, "device", a.device);
@@ -430,77 +419,69 @@ static GstElement* build_sender(const Args& a) {
     }
   }
 
-  // queue
-  GstElement *q1 = gst_element_factory_make("queue", "q1");
-  CHECK_ELEM(q1, "queue");
-  set_int(q1, "max-size-time", 0);
-  set_int(q1, "max-size-buffers", 0);
-  set_int(q1, "max-size-bytes", 0);
-  set_int(q1, "leaky", 2);
+  GstElement *tee = gst_element_factory_make("tee", "tee");
+  CHECK_ELEM(tee, "tee");
+  gst_bin_add(GST_BIN(pipe), tee);
+  if (!gst_element_link(conv, tee)) { std::cerr << "link fail conv->tee\n"; return nullptr; }
 
-  // encoder
-  GstElement *enc = gst_element_factory_make(enc_name.c_str(), "enc");
-  CHECK_ELEM(enc, enc_name.c_str());
+  // preview branch
+  GstElement *qprev  = gst_element_factory_make("queue", "qprev");  CHECK_ELEM(qprev, "queue");
+  GstElement *conv2  = gst_element_factory_make("videoconvert", "conv2"); CHECK_ELEM(conv2, "videoconvert");
+  GstElement *flip2  = gst_element_factory_make("videoflip", "flip2"); CHECK_ELEM(flip2, "videoflip");
+  set_arg(flip2, "method", "horizontal-flip");
+  GstElement *sink2  = gst_element_factory_make("autovideosink", "local_preview"); CHECK_ELEM(sink2, "autovideosink");
+  set_bool(sink2, "sync", TRUE);
+
+  gst_bin_add_many(GST_BIN(pipe), qprev, conv2, flip2, sink2, NULL);
+  if (!gst_element_link_many(tee, qprev, conv2, flip2, sink2, NULL)) {
+    std::cerr << "preview link fail\n"; return nullptr;
+  }
+
+  // network branch
+  GstElement *q1 = gst_element_factory_make("queue", "q1"); CHECK_ELEM(q1, "queue");
+  set_int(q1, "max-size-time", 0); set_int(q1, "max-size-buffers", 0); set_int(q1, "max-size-bytes", 0); set_int(q1, "leaky", 2);
+
+  GstElement *enc = gst_element_factory_make(enc_name.c_str(), "enc"); CHECK_ELEM(enc, enc_name.c_str());
   if (enc_name == "nvh264enc") {
-    set_str(enc, "preset", "low-latency-hq");
-    set_str(enc, "rc", "cbr");
-    set_int(enc, "bitrate", a.bitrate_kbps);
-    set_int(enc, "key-int-max", a.keyint);
-    set_bool(enc, "zerolatency", TRUE);
+    set_str(enc, "preset", "low-latency-hq"); set_str(enc, "rc", "cbr");
+    set_int(enc, "bitrate", a.bitrate_kbps); set_int(enc, "key-int-max", a.keyint); set_bool(enc, "zerolatency", TRUE);
   } else if (enc_name == "vaapih264enc") {
-    set_str(enc, "tune", "low-power");
-    set_str(enc, "rate-control", "cbr");
+    set_arg(enc, "rate-control", "cbr");
     set_int(enc, "bitrate", a.bitrate_kbps);
     set_int(enc, "keyframe-period", a.keyint);
   } else if (enc_name == "qsvh264enc") {
-    set_str(enc, "rate-control", "cbr");
-    set_int(enc, "bitrate", a.bitrate_kbps*1000);
-    set_int(enc, "gop-size", a.keyint);
+    set_str(enc, "rate-control", "cbr"); set_int(enc, "bitrate", a.bitrate_kbps*1000); set_int(enc, "gop-size", a.keyint);
   } else if (enc_name == "vah264enc") {
     set_int(enc, "bitrate", a.bitrate_kbps*1000);
   } else { // x264enc
-    set_arg(enc, "tune", "zerolatency");
-    set_arg(enc, "speed-preset", "ultrafast");
-    set_int(enc, "bitrate", a.bitrate_kbps);
-    set_int(enc, "key-int-max", a.keyint);
-    set_bool(enc, "byte-stream", TRUE);
+    set_arg(enc, "tune", "zerolatency"); set_arg(enc, "speed-preset", "ultrafast");
+    set_int(enc, "bitrate", a.bitrate_kbps); set_int(enc, "key-int-max", a.keyint); set_bool(enc, "byte-stream", TRUE);
   }
 
-  GstElement *parse = gst_element_factory_make("h264parse", "parse");
-  CHECK_ELEM(parse, "h264parse");
+  GstElement *parse = gst_element_factory_make("h264parse", "parse"); CHECK_ELEM(parse, "h264parse");
   set_int(parse, "config-interval", 1);
+  set_arg(parse, "stream-format", "byte-stream");
+  set_arg(parse, "alignment", "au");
 
-  GstElement *sink = gst_element_factory_make("udpsink", "udpsink");
-  CHECK_ELEM(sink, "udpsink");
-  set_str(sink, "host", a.peer_ip);
-  set_int(sink, "port", a.video_send_port);
-  set_bool(sink, "sync", FALSE);
-  set_bool(sink, "async", FALSE);
+  GstElement *pay = gst_element_factory_make("rtph264pay", "pay"); CHECK_ELEM(pay, "rtph264pay");
+  set_int(pay, "pt", 96); set_int(pay, "mtu", a.mtu); set_int(pay, "config-interval", 1);
 
-  if (!a.use_ts) {
-    GstElement *pay = gst_element_factory_make("rtph264pay", "pay");
-    CHECK_ELEM(pay, "rtph264pay");
-    set_int(pay, "pt", 96); set_int(pay, "mtu", a.mtu);
+  GstElement *sink = gst_element_factory_make("udpsink", "udpsink"); CHECK_ELEM(sink, "udpsink");
+  set_str(sink, "host", a.peer_ip); set_int(sink, "port", a.video_send_port);
+  set_bool(sink, "sync", FALSE); set_bool(sink, "async", FALSE);
 
-    gst_bin_add_many(GST_BIN(pipe), q1, enc, parse, pay, sink, NULL);
-    if (!gst_element_link_many(conv, q1, enc, parse, pay, sink, NULL)) return nullptr;
-  } else {
-    GstElement *mux = gst_element_factory_make("mpegtsmux", "mux");
-    CHECK_ELEM(mux, "mpegtsmux");
-    set_int(mux, "muxrate", a.bitrate_kbps*1000);
+  gst_bin_add_many(GST_BIN(pipe), q1, enc, parse, pay, sink, NULL);
+  if (!gst_element_link_many(tee, q1, enc, parse, pay, sink, NULL)) return nullptr;
 
-    GstElement *pay = gst_element_factory_make("rtpmp2tpay", "pay");
-    CHECK_ELEM(pay, "rtpmp2tpay");
-    set_int(pay, "pt", 33); set_int(pay, "mtu", a.mtu);
-
-    gst_bin_add_many(GST_BIN(pipe), q1, enc, parse, mux, pay, sink, NULL);
-    if (!gst_element_link_many(conv, q1, enc, parse, mux, pay, sink, NULL)) return nullptr;
-  }
+  // bus watch
+  GstBus* bus = gst_element_get_bus(pipe);
+  gst_bus_add_watch(bus, bus_cb, (gpointer)"sender");
+  gst_object_unref(bus);
 
   return pipe;
 }
 
-// ---- alıcı boru hattı (AYNA: videoflip horizontal) ----
+// ---- receiver ----
 static GstElement* build_receiver(const Args& a) {
   GstElement* pipe = gst_pipeline_new("receiver");
 
@@ -526,6 +507,7 @@ static GstElement* build_receiver(const Args& a) {
   auto jbuf = gst_element_factory_make("rtpjitterbuffer", "jbuf");
   CHECK_ELEM(jbuf, "rtpjitterbuffer");
   set_int(jbuf, "latency", a.latency_ms);
+  set_bool(jbuf, "mode", TRUE);
 
   auto depay = (!a.use_ts)
     ? gst_element_factory_make("rtph264depay", "depay")
@@ -539,7 +521,6 @@ static GstElement* build_receiver(const Args& a) {
   auto conv = gst_element_factory_make("videoconvert", "conv");
   CHECK_ELEM(conv, "videoconvert");
 
-  // AYNA için:
   auto flip = gst_element_factory_make("videoflip", "flip");
   CHECK_ELEM(flip, "videoflip");
   set_arg(flip, "method", "horizontal-flip");
@@ -566,12 +547,18 @@ static GstElement* build_receiver(const Args& a) {
     if (!gst_element_link_many(parse, dec, conv, flip, sink, NULL)) return nullptr;
   }
 
+  // bus watch
+  GstBus* bus = gst_element_get_bus(pipe);
+  gst_bus_add_watch(bus, bus_cb, (gpointer)"receiver");
+  gst_object_unref(bus);
+
   return pipe;
 }
 
 int main(int argc, char** argv) {
   gst_init(&argc, &argv);
   std::signal(SIGINT, sig_handler);
+  std::signal(SIGTERM, sig_handler);
 
   if (argc < 6) {
     std::cerr << "Kullanım: ./nova_engine <peer_ip> <video_send_port> <video_listen_port> <ctrl_send_port> <ctrl_listen_port>\n";
@@ -585,7 +572,6 @@ int main(int argc, char** argv) {
   a.ctrl_send_port    = std::stoi(argv[4]);
   a.ctrl_listen_port  = std::stoi(argv[5]);
 
-  // Kamerayı ve GERÇEKTE açılabilen en iyi modu seç
   if (!auto_select_best_camera(a)) {
     std::cerr << "Kamera bulunamadı veya kaps doğrulanamadı.\n";
     return 1;
@@ -596,34 +582,34 @@ int main(int argc, char** argv) {
             << " " << a.width << "x" << a.height
             << "@" << a.fps << " selected\n";
 
-  // Kontrol kanalı
   ControlChannel ctrl(a.peer_ip, a.ctrl_send_port, a.ctrl_listen_port);
-  if (!ctrl.start()) {
-    std::cerr << "Control channel start failed\n";
-    return 1;
-  }
-
-  // ESC watcher
-  KeyWatcher kw;
-  std::thread key_thr([&]{ kw.run(); });
+  if (!ctrl.start()) { std::cerr << "Control channel start failed\n"; return 1; }
 
   auto sender   = build_sender(a);
-  if (!sender) { ctrl.stop(); g_stop=true; if(key_thr.joinable()) key_thr.join(); return 1; }
   auto receiver = build_receiver(a);
-  if (!receiver){ ctrl.stop(); g_stop=true; if(key_thr.joinable()) key_thr.join(); return 1; }
+  if (!sender || !receiver) { ctrl.stop(); return 1; }
 
-  // Önce dinle, sonra gönder
   gst_element_set_state(receiver, GST_STATE_PLAYING);
   gst_element_set_state(sender,   GST_STATE_PLAYING);
 
-  while (!g_stop) std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  // ---- GLib main loop + STDIN watcher (ESC/q) ----
+  g_loop = g_main_loop_new(NULL, FALSE);
 
+  GIOChannel* ch = g_io_channel_unix_new(STDIN_FILENO);
+  g_io_channel_set_encoding(ch, NULL, NULL);
+  g_io_channel_set_flags(ch, (GIOFlags)(g_io_channel_get_flags(ch) | G_IO_FLAG_NONBLOCK), NULL);
+  g_io_add_watch(ch, (GIOCondition)(G_IO_IN | G_IO_HUP | G_IO_ERR | G_IO_NVAL), stdin_cb, NULL);
+
+  g_main_loop_run(g_loop);
+
+  // ---- shutdown ----
   gst_element_set_state(sender, GST_STATE_NULL);
   gst_element_set_state(receiver, GST_STATE_NULL);
   gst_object_unref(sender);
   gst_object_unref(receiver);
-
   ctrl.stop();
-  if (key_thr.joinable()) key_thr.join();
+
+  if (ch) g_io_channel_unref(ch);
+  if (g_loop) { g_main_loop_unref(g_loop); g_loop=nullptr; }
   return 0;
 }
